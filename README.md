@@ -1,4 +1,4 @@
-# Croperty
+# Croperty [![Build Status](https://travis-ci.org/firejox/croperty.svg?branch=master)](https://travis-ci.org/firejox/croperty)
 
 Just for fun to use `annotation` to behave as `Object#property`, `Object#getter`, `Object#setter`
 
