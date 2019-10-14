@@ -3,10 +3,10 @@ require "./spec_helper"
 @[Croperty::Getter(getter1: Int32)]
 @[Croperty::Getter(getter2: Int32, init: 1234)]
 @[Croperty::Getter(getter3: Int32, init: 1234, lazy_init: true)]
-@[Croperty::Getter(getter4: Int32, mode: Croperty::Mode::Query)]
-@[Croperty::Getter(getter5: Int32, init: 1234, mode: Croperty::Mode::Query)]
-@[Croperty::Getter(getter6: Int32, mode: Croperty::Mode::Exclaim)]
-@[Croperty::Getter(getter7: Int32, init: 1234, mode: Croperty::Mode::Exclaim)]
+@[Croperty::Getter(getter4?: Int32)]
+@[Croperty::Getter(getter5?: Int32, init: 1234)]
+@[Croperty::Getter(getter6!: Int32)]
+@[Croperty::Getter(getter7!: Int32, init: 1234)]
 class TestedObject
   include Croperty::Generator(self)
 end

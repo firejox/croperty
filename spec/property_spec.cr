@@ -3,10 +3,10 @@ require "./spec_helper"
 @[Croperty::Property(prop1: Int32)]
 @[Croperty::Property(prop2: Int32, init: 1234)]
 @[Croperty::Property(prop3: Int32, init: 1234, lazy_init: true)]
-@[Croperty::Property(prop4: Int32, mode: Croperty::Mode::Query)]
-@[Croperty::Property(prop5: Int32, init: 1234, mode: Croperty::Mode::Query)]
-@[Croperty::Property(prop6: Int32, mode: Croperty::Mode::Exclaim)]
-@[Croperty::Property(prop7: Int32, init: 1234, mode: Croperty::Mode::Exclaim)]
+@[Croperty::Property(prop4?: Int32)]
+@[Croperty::Property(prop5?: Int32, init: 1234)]
+@[Croperty::Property(prop6!: Int32)]
+@[Croperty::Property(prop7!: Int32, init: 1234)]
 class TestedObject
   include Croperty::Generator(self)
 end
