@@ -171,12 +171,13 @@ module Croperty::Generator(T)
   end
 
   macro included
-    property_gen({{ T }})
-    setter_gen({{ T }})
-    getter_gen({{ T }})
+    {% type = T.is_a?(Generic) ? T.name : T %}
+    property_gen({{ type }})
+    setter_gen({{ type }})
+    getter_gen({{ type }})
 
-    multi_property_gen({{ T }})
-    multi_getter_gen({{ T }})
-    multi_setter_gen({{ T }})
+    multi_property_gen({{ type }})
+    multi_getter_gen({{ type }})
+    multi_setter_gen({{ type }})
   end
 end
