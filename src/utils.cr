@@ -13,4 +13,13 @@ module Croperty
 
   annotation Setter
   end
+
+  annotation MultiProperty
+  end
+
+  annotation MultiGetter
+  end
+
+  annotation MultiSetter
+  end
 end

@@ -7,7 +7,7 @@ require "./spec_helper"
 @[Croperty::Getter(getter5?: Int32, init: 1234)]
 @[Croperty::Getter(getter6!: Int32)]
 @[Croperty::Getter(getter7!: Int32, init: 1234)]
-class TestedObject
+private class TestedObject
   include Croperty::Generator(self)
 end
 

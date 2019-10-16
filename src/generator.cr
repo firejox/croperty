@@ -119,9 +119,64 @@ module Croperty::Generator(T)
     {% end %}
   end
 
+  private macro multi_property_gen(target)
+    {% for multi_prop in target.resolve.annotations(Croperty::MultiProperty) %}
+      {% for name, type in multi_prop.named_args %}
+        {%
+          mode = Croperty::Mode::Default
+
+          if name.id.ends_with?('?')
+            name = name.id[0...-1]
+            mode = Croperty::Mode::Query
+          elsif name.id.ends_with?('!')
+            name = name.id[0...-1]
+            mode = Croperty::Mode::Exclaim
+          end
+        %}
+
+        initializer_helper({{ name }}, {{ type }}, nil, false, {{ mode }})
+        property_helper({{ name }}, {{ type }}, nil, false, {{ mode }})
+      {% end %}
+    {% end %}
+  end
+
+  private macro multi_getter_gen(target)
+    {% for multi_get in target.resolve.annotations(Croperty::MultiGetter) %}
+      {% for name, type in multi_get.named_args %}
+        {%
+          mode = Croperty::Mode::Default
+
+          if name.id.ends_with?('?')
+            name = name.id[0...-1]
+            mode = Croperty::Mode::Query
+          elsif name.id.ends_with?('!')
+            name = name.id[0...-1]
+            mode = Croperty::Mode::Exclaim
+          end
+        %}
+
+        initializer_helper({{ name }}, {{ type }}, nil, false, {{ mode }})
+        getter_helper({{ name }}, {{ type }}, nil, false, {{ mode }})
+      {% end %}
+    {% end %}
+  end
+
+  private macro multi_setter_gen(target)
+    {% for multi_set in target.resolve.annotations(Croperty::MultiSetter) %}
+      {% for name, type in multi_set.named_args %}
+        initializer_helper({{ name }}, {{ type }}, nil, false, 0)
+        setter_helper({{ name }}, {{ type }})
+      {% end %}
+    {% end %}
+  end
+
   macro included
     property_gen({{ T }})
     setter_gen({{ T }})
     getter_gen({{ T }})
+
+    multi_property_gen({{ T }})
+    multi_getter_gen({{ T }})
+    multi_setter_gen({{ T }})
   end
 end

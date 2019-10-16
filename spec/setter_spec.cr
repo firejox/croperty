@@ -2,7 +2,7 @@ require "./spec_helper"
 
 @[Croperty::Setter(setter1: Int32)]
 @[Croperty::Setter(setter2: Int32, init: 1234)]
-class TestedObject
+private class TestedObject
   include Croperty::Generator(self)
 end
 
